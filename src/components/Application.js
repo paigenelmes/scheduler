@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import "components/Application.scss";
 import DayList from "./DayList";
+import Appointment from "components/Appointment/index";
+import { appointments } from "components/Appointment/index";
 
 const days = [
   {
@@ -22,7 +24,21 @@ const days = [
 ];
 
 export default function Application(props) {
+  //Hooks
   const [value, onChange] = useState("Monday");
+
+  //Helper function that converts the appointments object to an array and maps over the array
+  //Returns a spread object with props for the appointment list
+
+  const appointmentList = Object.values(appointments).map(appointment => {
+      return (
+      <Appointment 
+        key={appointment.id} 
+        {...appointment} 
+      />
+      )
+  })
+  
 
   return (
     <main className="layout">
@@ -47,7 +63,8 @@ export default function Application(props) {
 />
       </section>
       <section className="schedule">
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
+        {appointmentList}
+        <Appointment key="last" time="5pm" />
       </section>
     </main>
   );
