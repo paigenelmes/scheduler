@@ -12,7 +12,6 @@ export default function Application(props) {
   const [days, setDays] = useState([]);
 
   //GET request to /api/days using axios
-
   useEffect(() => {
     const daysAPI = "http://localhost:8001/api/days";
     axios.get(daysAPI).then(response => {
@@ -22,7 +21,6 @@ export default function Application(props) {
 
   //Helper function that converts the appointments object to an array and maps over the array
   //Returns a spread object with props for the appointment list
-
   const appointmentList = Object.values(appointments).map(appointment => {
       return (
       <Appointment 
