@@ -1,4 +1,5 @@
-export default function getAppointmentsForDay(state, day) {
+//Get Appointments For Day helper function
+const getAppointmentsForDay = function(state, day) {
   //If days data is empty, return an empty array
   if (state.days.length === 0) {
     return [];
@@ -17,3 +18,24 @@ export default function getAppointmentsForDay(state, day) {
   ))
   return appointmentResult;
 }
+
+//Get Interview helper function
+const getInterview = function(state, interview) {
+   //Return null if interviewer is not found
+   if (!interview) {
+    return null;
+  }
+  //interview result variable with initial key/value pair for student
+  let interviewResult = {student: interview.student};
+  const interviewers = state.interviewers;
+  //Loop over interviewers object, if the number equals the intervier's number, set the key based on state
+  for (let num in interviewers) {
+    if (Number(num) === interview.interviewer) {
+      interviewResult.interviewer = state.interviewers[num];
+    }
+  }
+  //Return interview result object
+  return interviewResult;
+}
+
+export { getAppointmentsForDay, getInterview };
