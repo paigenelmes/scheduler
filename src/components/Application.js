@@ -7,15 +7,23 @@ import Appointment from "components/Appointment/index";
 import { appointments } from "components/Appointment/index";
 
 export default function Application(props) {
-  //Hooks
-  const [value, onChange] = useState("Monday");
-  const [days, setDays] = useState([]);
+  //Combined state hook
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    appointments: {}
+  });
+  
+  //setDay function to update the state with a new day
+  const setDay = day => setState({ ...state, day });
 
   //GET request to /api/days using axios
   useEffect(() => {
     const daysAPI = "http://localhost:8001/api/days";
     axios.get(daysAPI).then(response => {
-      setDays([...response.data]);
+      //state.setDays([...response.data]);
+      setState(prev => ({ ...prev, days: response.data }));
+
     });
     }, [])
 
@@ -42,9 +50,9 @@ export default function Application(props) {
 <hr className="sidebar__separator sidebar--centered" />
 <nav className="sidebar__menu">
   <DayList
-    days={days}
-    day={value}
-    setDay={onChange}
+    days={state.days}
+    day={state.value}
+    onChange={setDay}
   />
 </nav>
 <img
