@@ -4,7 +4,7 @@ import axios from 'axios';
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment/index";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 export default function Application(props) {
   //Combined state hook
@@ -15,7 +15,8 @@ export default function Application(props) {
     interviewers: {}
   });
 
-  const dailyAppointments = getAppointmentsForDay(state, state.day)
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const interviewers = getInterviewersForDay(state, state.day);
   
   //setDay function to update the state with a new day
   const setDay = day => setState({ ...state, day });
@@ -48,6 +49,7 @@ export default function Application(props) {
         id={appointment.id}
         time={appointment.time}
         interview={getInterview(state, appointment.interview)}
+        interviewers={interviewers}
       />
       )
   })
