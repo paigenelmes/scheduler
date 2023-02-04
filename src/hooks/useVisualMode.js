@@ -8,16 +8,17 @@ export default function useVisualMode(initial) {
   function transition(newMode, replace = false) {
     //If replace is true, replace the current mode
     if (replace) {
-      let historyArray = [...history];
+      const historyArray = [...history];
       historyArray.pop();
       historyArray.push(newMode);
-      setMode(historyArray[historyArray.length-1]);
+      const prevMode = historyArray[historyArray.length - 1];
+      setMode(prevMode);
       setHistory(historyArray);
       }
 
     //If replace is false, do not replace the current mode
     if (!replace) {
-    let historyArray = [...history];
+    const historyArray = [...history];
     setMode(newMode);
     historyArray.push(newMode);
     setHistory(historyArray);
@@ -30,7 +31,7 @@ export default function useVisualMode(initial) {
     if (history.length < 2) {
       return;
     }
-    let historyArray = [...history];
+    const historyArray = [...history];
     //Set the mode to the previous item in history
     historyArray.pop();
     setHistory(historyArray);
