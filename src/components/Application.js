@@ -39,7 +39,7 @@ export default function Application(props) {
     
     }, [])
 
-  //Helper function for booking interview
+  //Helper function to book an interview
   function bookInterview(id, interview) {
 
     //Axios PUT request using appointment id & interview data
@@ -50,32 +50,63 @@ export default function Application(props) {
         const appointment = {
           ...state.appointments[id],
           interview: { ...interview }
-        };
+        }
     
         const appointments = {
           ...state.appointments,
           [id]: appointment
-        };
+        }
 
         setState({
         ...state,
         appointments
       })
-      console.log("Response", response);
+
+      console.log("bookInterview Response", response);
     });
   };
 
+  //Helper function to cancel an interview
+  //Uses an axios delete request & sets the interview data to null
+  function cancelInterview(id) {
+
+    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+      .then((response) => { 
+
+        const appointment = {
+          ...state.appointments,
+          interview: null
+        }
+    
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment
+        }
+
+        setState({
+          ...state,
+          appointments
+        })
+
+      console.log("cancelInterview Response", response);
+    });
+  };
+
+
+
   //Helper function that converts the appointments object to an array and maps over the array
-  //Returns the appointment component with props
+  //Returns the appointment component
   const appointmentList = dailyAppointments.map(appointment => {
+      const interview = getInterview(state, appointment.interview);
       return (
       <Appointment 
         key={appointment.id} 
         id={appointment.id}
         time={appointment.time}
-        interview={getInterview(state, appointment.interview)}
+        interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
       )
   })
