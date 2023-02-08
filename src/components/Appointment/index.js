@@ -4,6 +4,7 @@ import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
+import Status from "./Status";
 import useVisualMode from "hooks/useVisualMode";
 
 export default function Appointment(props) {
@@ -11,6 +12,9 @@ export default function Appointment(props) {
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
+const SAVING = "SAVING";
+
+console.log("Interview Props", props.interview);
 
 //Custom hook
 const { mode, transition, back } = useVisualMode(
@@ -18,24 +22,29 @@ const { mode, transition, back } = useVisualMode(
 );
 
 //Helper funciton for saving appointment data
+//Shows SAVING mode before calling props.bookInterview
 function save(name, interviewer) {
   const interview = {
     student: name,
     interviewer
-  };
+  }
+  transition(SAVING);
   props.bookInterview(props.id, interview)
-    .then(() => transition(SHOW));
+      .then(() => transition(SHOW));
 }
 
   return (  
     <article className="appointment">
       <Header time={props.time}/>
-      {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+      {mode === EMPTY && (
+        <Empty 
+          onAdd={() => transition(CREATE)} 
+        />
+      )}
       {mode === SHOW && (
         <Show
           student={props.interview.student}
-          //interviewer={props.interview.interviewer}
-          interviewer={[]}
+          interviewer={props.interview.interviewer}
         />
       )}
       {mode === CREATE && (
@@ -45,6 +54,11 @@ function save(name, interviewer) {
           onSave={save}
         />
       )}
+      {mode === SAVING && (
+        <Status 
+          message={"Saving..."}
+        />)
+      }
     </article>
   )
 }
