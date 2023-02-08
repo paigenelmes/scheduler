@@ -15,9 +15,10 @@ export default function Application(props) {
     interviewers: {}
   });
 
+  //Variables for interviewers and daily appointments
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
-  
+
   //setDay function to update the state with a new day
   const setDay = day => setState({ ...state, day });
 
@@ -38,22 +39,39 @@ export default function Application(props) {
     
     }, [])
 
+  //Helper function for booking interview
+  function bookInterview(id, interview) {
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState({
+      ...state,
+      appointments
+    })
+  };
 
   //Helper function that converts the appointments object to an array and maps over the array
-  //Returns a spread object with props for the appointment list
+  //Returns the appointment component with props
   const appointmentList = dailyAppointments.map(appointment => {
       return (
       <Appointment 
         key={appointment.id} 
-        {...appointment} 
         id={appointment.id}
         time={appointment.time}
         interview={getInterview(state, appointment.interview)}
         interviewers={interviewers}
+        bookInterview={bookInterview}
       />
       )
   })
-  
 
   return (
     <main className="layout">
