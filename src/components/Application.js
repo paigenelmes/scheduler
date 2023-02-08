@@ -42,20 +42,27 @@ export default function Application(props) {
   //Helper function for booking interview
   function bookInterview(id, interview) {
 
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
+    //Axios PUT request using appointment id & interview data
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
+    //When the response comes back, update the state
+      .then((response) => {
 
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
+        const appointment = {
+          ...state.appointments[id],
+          interview: { ...interview }
+        };
+    
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment
+        };
 
-    setState({
-      ...state,
-      appointments
-    })
+        setState({
+        ...state,
+        appointments
+      })
+      console.log("Response", response);
+    });
   };
 
   //Helper function that converts the appointments object to an array and maps over the array
