@@ -91,8 +91,7 @@ export default function Application(props) {
       console.log("cancelInterview Response", response);
     });
   };
-
-
+     
 
   //Helper function that converts the appointments object to an array and maps over the array
   //Returns the appointment component
