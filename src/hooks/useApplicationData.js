@@ -29,6 +29,17 @@ export default function useApplicationData() {
     
     }, []);
 
+  //Get the number of spots based on the number of appointments that are null
+  const spotsRemaining = function(appointments, appointmentId) {
+    //Find the object in state.days array where the appointment id matches the date
+    const day = state.days.find(date => date.appointments.includes(appointmentId));
+    //Get number of spots by filtering day.appointments and finding where the appointment id is null
+    const spots = day.appointments.filter((id) => appointments[id].interview === null).length;
+    //Map over state.days and look for changes in available spots
+    //If available spots have changed, return the updated number of spots. If not, do not update spots
+    return state.days.map(date => date.name === state.day ? {...date, spots} : date)
+  }
+
   //Helper function to book an interview
   function bookInterview(id, interview) {
 
@@ -49,7 +60,8 @@ export default function useApplicationData() {
 
         setState({
         ...state,
-        appointments
+        appointments,
+        days: spotsRemaining(appointments, id)
       })
     });
   };
@@ -73,11 +85,12 @@ export default function useApplicationData() {
 
         setState({
           ...state,
-          appointments
+          appointments,
+          days: spotsRemaining(appointments, id)
         })
     });
   };
-  
+
   //Returning all the data as an object
   return { state, setDay, bookInterview, cancelInterview };
 
