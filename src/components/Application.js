@@ -45,7 +45,7 @@ export default function Application(props) {
     //Axios PUT request using appointment id & interview data
     return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
     //When the response comes back, update the state
-      .then((response) => {
+      .then(() => {
 
         const appointment = {
           ...state.appointments[id],
@@ -61,8 +61,6 @@ export default function Application(props) {
         ...state,
         appointments
       })
-
-      console.log("bookInterview Response", response);
     });
   };
 
@@ -71,7 +69,7 @@ export default function Application(props) {
   function cancelInterview(id) {
 
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
-      .then((response) => { 
+      .then(() => { 
 
         const appointment = {
           ...state.appointments,
@@ -87,8 +85,6 @@ export default function Application(props) {
           ...state,
           appointments
         })
-
-      console.log("cancelInterview Response", response);
     });
   };
      
