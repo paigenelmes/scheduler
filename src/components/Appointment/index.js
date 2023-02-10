@@ -17,6 +17,8 @@ export default function Appointment(props) {
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
   const EDIT = "EDIT";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
 
   //Custom hook
   const { mode, transition, back } = useVisualMode(
@@ -32,7 +34,9 @@ export default function Appointment(props) {
   //Transitions to SAVING mode before calling props.bookInterview & transitioning to SHOW mode
   transition(SAVING);
   props.bookInterview(props.id, interview)
-    .then(() => transition(SHOW));
+    .then(() => transition(SHOW))
+    //Error handling
+    .catch((error) => transition(ERROR_SAVE, true));
   }
 
   //Helper function to cancel an appointment
@@ -41,7 +45,10 @@ export default function Appointment(props) {
     transition(DELETING);
     //Calls on props.deleteInterview & transitions to EMPTY
     props.cancelInterview(props.id)
-      .then(() => transition(EMPTY));
+      .then(() => transition(EMPTY))
+      //Error handling
+      .catch((error) => transition(ERROR_DELETE, true));
+      
   }
 
   return (  
