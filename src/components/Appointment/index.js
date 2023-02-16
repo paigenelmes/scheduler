@@ -50,7 +50,7 @@ export default function Appointment(props) {
       .catch(() => transition(ERROR_DELETE, true));
       
   }
-
+  console.log(props);
   return (  
     <article className="appointment">
       <Header time={props.time}/>

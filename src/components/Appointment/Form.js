@@ -5,7 +5,7 @@ import InterviewerList from "components/InterviewerList";
 export default function Form (props) { 
 
   //Hooks
-  let [student, setStudent] = useState(props.student || "");
+  let [student, setStudent] = useState(props.name || "");
   let [interviewer, setInterviewer] = useState(props.interviewer || null)
 
   //Reset helper function to clear the form values
@@ -26,9 +26,11 @@ export default function Form (props) {
         <form autoComplete="off" onSubmit={event => event.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
-            name={student}
+            value={student}
+            name="name"
             type="text"
             placeholder="Enter Student Name"
+            data-testid="student-name-input"
             onChange={(event) => setStudent(event.target.value)}
           />
           <InterviewerList 
