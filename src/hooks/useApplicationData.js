@@ -15,9 +15,9 @@ export default function useApplicationData() {
 
   //axios request to days, appointments & interviewers APIs using promises
   useEffect(() => {
-    const daysAPI = "http://localhost:8001/api/days";
-    const appointmentsAPI = "http://localhost:8001/api/appointments";
-    const interviewersAPI = "http://localhost:8001/api/interviewers";
+    const daysAPI = "/api/days";
+    const appointmentsAPI = "/api/appointments";
+    const interviewersAPI = "/api/interviewers";
 
     Promise.all([
       axios.get(daysAPI),
