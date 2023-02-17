@@ -11,8 +11,8 @@ export default function Form (props) {
 
   //Reset helper function to clear the form values
   const reset = function() {
-    setStudent = "";
-    setInterviewer = null;
+    setStudent("");
+    setInterviewer(null);
   }
 
   //Cancel helper function that uses the reset function
@@ -33,6 +33,7 @@ export default function Form (props) {
       return;
     }
 
+    setError("");
     props.onSave(student, interviewer);
   }
 
