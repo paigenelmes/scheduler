@@ -14,7 +14,7 @@ describe("Form", () => {
     }
   ];
 
-  //TEST #1
+  //TEST #1: RENDERS WITHOUT STUDENT NAME
   it("renders without student name if not provided", () => {
     const { getByPlaceholderText } = render(
       <Form 
@@ -25,7 +25,7 @@ describe("Form", () => {
     expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
   });
 
-  //TEST #2
+  //TEST #2: RENDERS WITH STUDENT NAME
   it("renders with initial student name", () => {
     const { getByTestId } = render(
       <Form 
@@ -35,7 +35,7 @@ describe("Form", () => {
     expect(getByTestId("student-name-input")).toHaveValue("Lydia Miller-Jones");
   });
 
-  //TEST #3
+  //TEST #3: STUDENT NAME CANNOT BE BLANK
   it("validates that the student name is not blank", () => {
     const onSave = jest.fn();
 
@@ -52,7 +52,7 @@ describe("Form", () => {
     expect(onSave).not.toHaveBeenCalled();
   });
 
-  //TEST #4
+  //TEST #4: INTERVIEWER CANNOT BE NULL
   it("validates that the interviewer cannot be null", () => {
     const onSave = jest.fn();
 
@@ -70,7 +70,7 @@ describe("Form", () => {
     expect(onSave).not.toHaveBeenCalled();
   });
   
-  //TEST #5
+  //TEST #5: CAN SAVE AFTER SUBMITTING EMPTY NAME
   it("can successfully save after trying to submit an empty student name", () => {
     const onSave = jest.fn();
     const { getByText, getByPlaceholderText, queryByText } = render(
@@ -98,7 +98,7 @@ describe("Form", () => {
     expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1);
   });
 
-  //TEST #6
+  //TEST #6: RESETS INPUT WITH ONCANCEL
   it("calls onCancel and resets the input field", () => {
     const onCancel = jest.fn();
     const { getByText, getByPlaceholderText, queryByText } = render(
