@@ -43,10 +43,12 @@ export default function Appointment(props) {
   //Helper function to cancel an appointment
   function deleteInterview(event) {
     //Transitions to DELETING mode
-    transition(DELETING, true)
+    transition(DELETING)
     //Calls on props.deleteInterview & transitions to EMPTY, handles errors
     props.cancelInterview(props.id)
-      .then(() => transition(EMPTY))
+      .then(() => {
+        transition(EMPTY);
+      })
       .catch(() => transition(ERROR_DELETE, true));
       
   }
@@ -105,12 +107,12 @@ export default function Appointment(props) {
           onSave={save}
         />
       )}
-      {mode === ERROR_DELETE  && (
+      {mode === ERROR_DELETE && (
         <Error 
         message={"Could not cancel appointment."}/>
       )}
 
-      {mode === ERROR_SAVE  && (
+      {mode === ERROR_SAVE && (
         <Error 
         message={"Could not save appointment."}/>
       )}

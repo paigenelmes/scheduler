@@ -42,21 +42,20 @@ export default function useApplicationData() {
 
   //Helper function to book an interview
   function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    }
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
 
     //Axios PUT request using appointment id & interview data
-    return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
+    return axios.put(`/api/appointments/${id}`, {interview})
     //When the response comes back, update the state
       .then(() => {
-
-        const appointment = {
-          ...state.appointments[id],
-          interview: { ...interview }
-        }
-    
-        const appointments = {
-          ...state.appointments,
-          [id]: appointment
-        }
 
         setState({
         ...state,
@@ -69,19 +68,18 @@ export default function useApplicationData() {
   //Helper function to cancel an interview
   //Uses an axios delete request & sets the interview data to null
   function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    }
 
-    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
-      .then(() => { 
-
-        const appointment = {
-          ...state.appointments,
-          interview: null
-        }
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
     
-        const appointments = {
-          ...state.appointments,
-          [id]: appointment
-        }
+    return axios.delete(`/api/appointments/${id}`)
+      .then(() => { 
 
         setState({
           ...state,
