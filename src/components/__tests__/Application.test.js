@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent, getByText, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, queryByAltText, prettyDOM } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, queryByAltText } from "@testing-library/react";
 
 import Application from "components/Application";
 
@@ -8,8 +8,8 @@ import axios from "axios";
 
 
 describe("Application", () => {
-  //Clean up
-  afterEach(cleanup);
+//Clean up
+afterEach(cleanup);
 
 //TEST #1: SCHEDULE CHANGE
 it("changes the schedule when a new day is selected", async () => {
@@ -147,7 +147,7 @@ it("shows the save error when failing to save an appointment", () => {
   axios.put.mockRejectedValueOnce();
   
   });
-  
+
 //TEST #6: SHOW ERROR WHEN DELETING FAILS
 it("shows the save error when failing to delete an appointment", () => {
   axios.delete.mockRejectedValueOnce();
