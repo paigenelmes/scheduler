@@ -1,21 +1,21 @@
 # Interview Scheduler
 
 ## About
-<screenshot 1>
+![Scheduler Overview](https://github.com/paigenelmes/scheduler/blob/master/public/images/screenshots/1-scheduler-overview.png)
 Interview Scheduler is a single-page app that allows users to book technical interviews. The front end of this project was created with **React**. It makes requests to an **API** with **Axios** to fetch and store appointment data from a database. This project was tested using **Storybook**, **Jest** and **Cypress**.
 
 *NOTE: This project was created as part of my learning with Lighthouse Labs and it is not intended for use in production-grade software.*
 
-<screenshot 2>
+![Scheduler Add](https://github.com/paigenelmes/scheduler/blob/master/public/images/screenshots/2-scheduler-add.png)
 Interviews can be scheduled from Monday - Friday, between 12PM and 5PM. Users can add an appointment, input any name and select an interviewer from a pre-defined list.
 
-<screenshot 3>
+![Scheduler Appointments](https://github.com/paigenelmes/scheduler/blob/master/public/images/screenshots/3-scheduler-appointments.png)
 A user can save the appointment and view the entire schedule for the week.
 
-<screenshot 4>
+![Scheduler Confirm](https://github.com/paigenelmes/scheduler/blob/master/public/images/screenshots/4-scheduler-confirm.png)
 Appointments can also be edited or deleted. If a user tries to delete an appointment, a confirmation message is shown to ask if they are sure they want to delete it.
 
-<screenshot 5>
+![Scheduler Missing Info](https://github.com/paigenelmes/scheduler/blob/master/public/images/screenshots/5-scheduler-missing-info.png)
 Users must input a name and select an interviewer. If one or both are missing, the appointment will not be saved.
 
 ## Setup
