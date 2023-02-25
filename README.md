@@ -4,6 +4,8 @@
 <screenshot 1>
 Interview Scheduler is a single-page app that allows users to book technical interviews. The front end of this project was created with **React**. It makes requests to an **API** with **Axios** to fetch and store appointment data from a database. This project was tested using **Storybook**, **Jest** and **Cypress**.
 
+*NOTE: This project was created as part of my learning with Lighthouse Labs and it is not intended for use in production-grade software.*
+
 <screenshot 2>
 Interviews can be scheduled from Monday - Friday, between 12PM and 5PM. Users can add an appointment, input any name and select an interviewer from a pre-defined list.
 
@@ -15,8 +17,6 @@ Appointments can also be edited or deleted. If a user tries to delete an appoint
 
 <screenshot 5>
 Users must input a name and select an interviewer. If one or both are missing, the appointment will not be saved.
-
-*NOTE: This project was created as part of my learning with Lighthouse Labs and it is not intended for use in production-grade software.*
 
 ## Setup
 
