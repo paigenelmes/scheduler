@@ -4,7 +4,7 @@ import InterviewerList from "components/InterviewerList";
 
 export default function Form(props) {
   //Hooks
-  let [student, setStudent] = useState(props.name || "");
+  let [student, setStudent] = useState(props.student || "");
   let [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 

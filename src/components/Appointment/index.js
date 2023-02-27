@@ -61,15 +61,19 @@ export default function Appointment(props) {
 
       {mode === SHOW && (
         <Show
-          student={props.interview.student}
-          interviewer={props.interview.interviewer}
+          student={props.interview && props.interview.student}
+          interviewer={props.interview && props.interview.interviewer}
           onDelete={() => transition(CONFIRM)}
           onEdit={() => transition(EDIT)}
         />
       )}
 
       {mode === CREATE && (
-        <Form interviewers={props.interviewers} onCancel={back} onSave={save} />
+        <Form 
+          interviewers={props.interviewers} 
+          onCancel={back} 
+          onSave={save} 
+        />
       )}
 
       {mode === SAVING && <Status message={"Saving..."} />}
@@ -86,8 +90,8 @@ export default function Appointment(props) {
 
       {mode === EDIT && (
         <Form
-          student={props.student}
-          interviewer={props.interviewer}
+          student={props.interview.student}
+          interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
           onCancel={back}
           onSave={save}
@@ -101,10 +105,10 @@ export default function Appointment(props) {
       )}
 
       {mode === ERROR_SAVE && (
-      <Error 
-        message={"Could not save appointment."} 
-        onClose={(() => back())}
-      />
+        <Error 
+          message={"Could not save appointment."} 
+          onClose={(() => back())}
+        />
       )}
     </article>
   );
