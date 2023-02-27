@@ -1,9 +1,10 @@
 # Interview Scheduler
 
 ## About
+
 Interview Scheduler is a single-page app that allows users to book technical interviews. The front end of this project was created with **React**. It makes requests to an **API** with **Axios** to fetch and store appointment data from a database. This project was tested using **Storybook**, **Jest** and **Cypress**.
 
-*NOTE: This project was created as part of my learning with Lighthouse Labs and it is not intended for use in production-grade software.*
+_NOTE: This project was created as part of my learning with Lighthouse Labs and it is not intended for use in production-grade software._
 
 ![Scheduler Overview](https://github.com/paigenelmes/scheduler/blob/master/public/images/screenshots/1-scheduler-overview.png)
 
@@ -22,6 +23,7 @@ Appointments can also be edited or deleted. If a user tries to delete an appoint
 Users must input a name and select an interviewer. If one or both are missing, the appointment will not be saved.
 
 ![Scheduler Missing Info](https://github.com/paigenelmes/scheduler/blob/master/public/images/screenshots/5-scheduler-missing-info.png)
+
 ## Setup
 
 1. Clone this repository.
@@ -29,9 +31,10 @@ Users must input a name and select an interviewer. If one or both are missing, t
 3. Clone the [scheduler-api repository](https://github.com/paigenelmes/scheduler-api).
 4. Install the scheduler-api dependencies with `npm install`.
 5. Login to the the PostgreSQL server with the username **development** and the password **development**. Use the command `psql -U development`.
-6. Create the database with the command `CREATE DATABASE scheduler_development;`. 
+6. Create the database with the command `CREATE DATABASE scheduler_development;`.
 7. Within the scheduler-api root folder, copy and paste the **.env.example file.** Name the new file **.env.development**.
-8. In the **.env.development** file, add the following PostgreSQL configiration: 
+8. In the **.env.development** file, add the following PostgreSQL configiration:
+
 ```sh
 PGHOST=localhost
 PGUSER=development
@@ -39,21 +42,24 @@ PGDATABASE=scheduler_development
 PGPASSWORD=development
 PGPORT=5432
 ```
+
 9. Run the scheduler-api with the command `npm start`.
 10. Perform a database reset by navigating to http://localhost:8001/api/debug/reset in your browser.
 11. In a seperate terminal window, navigate to the scheduler root folder and use the command `npm start` to run the scheduler.
-12. Visit http://localhost:8000/ in your browser and check out the scheduler! The scheduler should 
-now be populated with data from the scheduler-api.
+12. Visit http://localhost:8000/ in your browser and check out the scheduler! The scheduler should
+    now be populated with data from the scheduler-api.
 
 ## Dependancies
-* axios: 0.20.0
-* classnames: 2.2.6
-* normalize.css: 8.0.1
-* react: 16.9.0
-* react-dom: 16.9.0
-* react-hooks-testing-library: 0.6.0
-* react-scripts: 3.4.4
-* react-test-renderer: 16.9.0
+
+- axios: 0.20.0
+- classnames: 2.2.6
+- normalize.css: 8.0.1
+- react: 16.9.0
+- react-dom: 16.9.0
+- react-hooks-testing-library: 0.6.0
+- react-scripts: 3.4.4
+- react-test-renderer: 16.9.0
+
 ## Running Webpack Development Server
 
 ```sh
