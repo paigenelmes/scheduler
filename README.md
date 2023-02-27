@@ -42,7 +42,18 @@ PGPORT=5432
 9. Run the scheduler-api with the command `npm start`.
 10. Perform a database reset by navigating to http://localhost:8001/api/debug/reset in your browser.
 11. In a seperate terminal window, navigate to the scheduler root folder and use the command `npm start` to run the scheduler.
-12. Visit http://localhost:8000/ in your browser and check out the scheduler! The scheduler should now be populated with data from the scheduler-api.
+12. Visit http://localhost:8000/ in your browser and check out the scheduler! The scheduler should 
+now be populated with data from the scheduler-api.
+
+## Dependancies
+* axios: 0.20.0
+* classnames: 2.2.6
+* normalize.css: 8.0.1
+* react: 16.9.0
+* react-dom: 16.9.0
+* react-hooks-testing-library: 0.6.0
+* react-scripts: 3.4.4
+* react-test-renderer: 16.9.0
 ## Running Webpack Development Server
 
 ```sh
