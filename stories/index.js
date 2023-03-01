@@ -161,7 +161,7 @@ storiesOf("Appointment", module)
   .add("Show", () => (
     <Show
       student="Lydia Miller-Jones"
-      interviewer={interviewer.name}
+      interviewer={interviewer}
       onEdit={action("onEdit")}
       onDelete={action("onDelete")}
     />
@@ -183,7 +183,7 @@ storiesOf("Appointment", module)
   .add("Edit", () => (
     <Form
       student="Paige Nelmes"
-      interviewer="1"
+      interviewer={1}
       interviewers={interviewers}
       onSave={action("onSave")}
       onCancel={action("onCancel")}
